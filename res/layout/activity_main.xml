@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/page_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+            <Button android:id="@+id/go_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/go_button_text"/>
+            <EditText android:id="@+id/url_bar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:inputType="textUri"
+                android:layout_toLeftOf="@id/go_button"
+                android:singleLine="true"
+                android:text="@string/default_url"/>
+    </RelativeLayout>
+
+    <org.mozilla.gecko.GeckoView
+      android:id="@+id/gecko_view"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content" />
+</LinearLayout>
