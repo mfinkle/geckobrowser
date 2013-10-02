@@ -6,7 +6,8 @@ Very basic Android browser application that uses the GeckoView widget
 Prerequistes
 ------------
 
-1. Download an unzip the GeckoView assets and libraries from here http://people.mozilla.org/~mfinkle/geckoview/
-2. Open Eclipse and import the geckoview_library project by doing File > Import
-3. Set the imported geckoview_library project as a dependency in your application by adding it in the Android section of your project's properties. 
-4. Copy the assets to your project's "assets" folder
+1. Download and unzip the GeckoView assets and libraries from [here](http://people.mozilla.org/~mfinkle/geckoview/)
+2. Open Eclipse
+3. Import the geckoview_library project into the workspace using File > Import
+4. Import the geckobrowser application into the workspace using File > Import
+5. Copy the assets to the geckobrowser "assets" folder
