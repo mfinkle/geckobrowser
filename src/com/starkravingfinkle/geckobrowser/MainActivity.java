@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 final EditText text = (EditText) findViewById(R.id.url_bar);
+
                 GeckoView.Browser browser = mGeckoView.getSelected();
                 if (browser == null) {
                 	browser = mGeckoView.add(text.getText().toString());
@@ -41,8 +42,8 @@ public class MainActivity extends Activity {
             }
         });
         
-        mGeckoView.setGeckoViewChrome(new MyGeckoViewChrome());
-        mGeckoView.setGeckoViewContent(new MyGeckoViewContent());
+        mGeckoView.setChromeCallback(new MyGeckoViewChrome());
+        mGeckoView.setContentCallback(new MyGeckoViewContent());
 
         mPageTitle = (TextView) findViewById(R.id.page_title);
     }
@@ -58,22 +59,22 @@ public class MainActivity extends Activity {
     private class MyGeckoViewChrome extends GeckoViewChrome {
         @Override
         public void onReady(GeckoView view) {
-        	Log.i(LOGTAG, "Gecko is ready");
+            Log.i(LOGTAG, "Gecko is ready");
 
-        	// The Gecko libraries have finished loading and we can use the rendering engine.
-        	// Let's add a browser (required) and load a page into it.
-        	mGeckoView.add("http://starkravingfinkle.org");
+            // The Gecko libraries have finished loading and we can use the rendering engine.
+            // Let's add a browser (required) and load a page into it.
+            mGeckoView.add("http://starkravingfinkle.org");
         }
     }
 
     private class MyGeckoViewContent extends GeckoViewContent {
         @Override
         public void onReceivedTitle(GeckoView view, GeckoView.Browser browser, String title) {
-        	Log.i(LOGTAG, "Received a title");
-
-        	// Use the title returned from Gecko to update the UI
-        	// TODO: Only if the browser is the selected browser
-        	mPageTitle.setText(title);
+            Log.i(LOGTAG, "Received a title");
+			
+            // Use the title returned from Gecko to update the UI
+            // TODO: Only if the browser is the selected browser
+            mPageTitle.setText(title);
         }
     }
 }
