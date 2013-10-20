@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">GeckoBrowser</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_exit">Exit</string>
     <string name="go_button_text">Go</string>
     <string name="default_url">http://mozilla.com</string>
     
