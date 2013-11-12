@@ -39,17 +39,17 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 final EditText text = (EditText) findViewById(R.id.url_bar);
 
-                GeckoView.Browser browser = mGeckoView.getSelected();
+                GeckoView.Browser browser = mGeckoView.getCurrentBrowser();
                 if (browser == null) {
-                    browser = mGeckoView.add(text.getText().toString());
+                    browser = mGeckoView.addBrowser(text.getText().toString());
                 } else {
                     browser.loadUrl(text.getText().toString());
                 }
             }
         });
         
-        mGeckoView.setChromeCallback(new MyGeckoViewChrome());
-        mGeckoView.setContentCallback(new MyGeckoViewContent());
+        mGeckoView.setChromeDelegate(new MyGeckoViewChrome());
+        mGeckoView.setContentDelegate(new MyGeckoViewContent());
 
         mPageTitle = (TextView) findViewById(R.id.page_title);
     }
@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-    	Browser selected = mGeckoView.getSelected();
+    	Browser selected = mGeckoView.getCurrentBrowser();
     	if (selected != null && selected.canGoBack()) {
     	    selected.goBack();
     	} else {
@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 
             // The Gecko libraries have finished loading and we can use the rendering engine.
             // Let's add a browser (required) and load a page into it.
-            mGeckoView.add("http://starkravingfinkle.org");
+            mGeckoView.addBrowser("http://starkravingfinkle.org");
         }
 
         @Override
