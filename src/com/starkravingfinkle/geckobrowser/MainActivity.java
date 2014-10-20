@@ -88,12 +88,17 @@ public class MainActivity extends Activity {
         @Override
         public void onReady(GeckoView view) {
             Log.i(LOGTAG, "Gecko is ready");
+            // Inject a script that adds some code to the content window
+            mGeckoView.importScript("resource://android/assets/script.js");
 
+            // Set up remote debugging to a port number
+            PrefsHelper.setPref("devtools.debugger.remote-port", 6000);
+            PrefsHelper.setPref("devtools.debugger.unix-domain-socket", "");
             PrefsHelper.setPref("devtools.debugger.remote-enabled", true);
 
             // The Gecko libraries have finished loading and we can use the rendering engine.
             // Let's add a browser (required) and load a page into it.
-            mGeckoView.addBrowser("http://starkravingfinkle.org");
+            mGeckoView.addBrowser(getResources().getString(R.string.default_url));
         }
 
         @Override
@@ -129,6 +134,18 @@ public class MainActivity extends Activity {
         public void onDebugRequest(GeckoView view, GeckoView.PromptResult result) {
             Log.i(LOGTAG, "Remote Debug!");
             result.confirm();
+        }
+
+        @Override
+        public void onScriptMessage(GeckoView view, Bundle data, GeckoView.MessageResult result) {
+        	Log.i(LOGTAG, "Got Script Message: " + data.toString());
+            String type = data.getString("type");
+            if ("fetch".equals(type)) {
+            	Bundle ret = new Bundle();
+            	ret.putString("name", "Mozilla");
+            	ret.putString("url", "https://mozilla.org");
+            	result.success(ret);
+            }
         }
     }
 

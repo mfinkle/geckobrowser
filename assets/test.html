@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Asset Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="application/javascript">
+    window.addEventListener("load", init, false);
+    function init(e) {
+      var button = document.getElementById("button");
+      button.addEventListener("click", function() {
+        alert(window.special.message);
+        window.special.fetch(function(result) {
+          console.log("got a response from special.fetch: " + JSON.stringify(result));
+        });
+      }, false);
+    }
+    </script>
+</head>
+
+<body>
+    <div>HELLO</div>
+    <button id="button">Alert</button>
+</body>
+</html>
