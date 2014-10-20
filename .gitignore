@@ -1,5 +1,6 @@
 .DS_Store
-assets/*
+assets/*.ja
+assets/*.so
 bin/*
 libs/*
 gen/*
